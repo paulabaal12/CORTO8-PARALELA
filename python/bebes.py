@@ -19,10 +19,10 @@ def calcular_tiempo_celda_individual(args: Tuple[float, float, int]) -> float:
         t_celda += td
     return t_celda
 
+
 def simular_tiempo_bebe(bebe: Bebe, pista: List[int], n_celdas: int) -> float:
     if bebe.velocidad <= 0.0:
         return float('inf')  
-    
     t = 0.0
     for i in range(n_celdas):
         t_celda = 1.0 / bebe.velocidad
@@ -44,13 +44,13 @@ def ejecutar_repeticion(args: Tuple[List[Bebe], List[int], int, int]) -> Tuple[i
     
     mejor_tiempo = float('inf')  
     ganador = ""
-
     with ThreadPoolExecutor(max_workers=3) as executor:
         
         argumentos_bebes = [(bebe, pista, n_celdas) for bebe in bebes]
         
         
         resultados = list(executor.map(simular_bebe_individual, argumentos_bebes))
+    
     
     for nombre, tiempo in resultados:
         if tiempo < mejor_tiempo:
