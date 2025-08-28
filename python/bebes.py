@@ -54,7 +54,7 @@ def ejecutar_repeticion(args: Tuple[List[Bebe], List[int], int, int]) -> Tuple[i
     return rep, ganador, mejor_tiempo, tiempo_ejecucion
 
 def main():
-    REPETICIONES = 100000
+    REPETICIONES = 5
     tiempos = [0.0] * REPETICIONES
     
     
