@@ -21,8 +21,25 @@ def simular_tiempo_bebe(bebe, pista):
 
 # Función principal del programa
 def main():
-    REPETICIONES = 100000  # Número de repeticiones de la simulación
+    REPETICIONES = 5  # Número de repeticiones de la simulación
     tiempos = []           # Lista para guardar los tiempos de cada repetición
+
+    # Definición de los bebés participantes y pista
+    bebes = [
+        Bebe("Ana", 0.5, 2.0),
+        Bebe("Luis", 0.7, 1.0),
+        Bebe("Mia", 0.6, 1.5)
+    ]
+    pista = [0, 0, 0, 1, 0, 0, 1]  # Pista: 0=nada, 1=juguete
+    n_celdas = len(pista)          # Número de celdas de la pista
+
+    # Imprime los parámetros usados
+    print("\n===== PARÁMETROS DE LA SIMULACIÓN SECUENCIAL =====")
+    print(f"Cantidad de bebés: {len(bebes)}")
+    print(f"Nombres de bebés: {[b.nombre for b in bebes]}")
+    print(f"Pista: {pista}")
+    print(f"Cantidad de celdas: {n_celdas}")
+    print(f"Cantidad de iteraciones: {REPETICIONES}")
 
     inicio_total = time.time()  # Marca el inicio del tiempo total
 
@@ -30,15 +47,6 @@ def main():
     ultimo_resultado = {}  # Guardará los resultados de la última repetición
     for rep in range(REPETICIONES):
         inicio = time.time()  # Marca el inicio de la repetición
-
-        # Definición de los bebés participantes
-        bebes = [
-            Bebe("Ana", 0.5, 2.0),
-            Bebe("Luis", 0.7, 1.0),
-            Bebe("Mia", 0.6, 1.5)
-        ]
-        pista = [0, 0, 0, 1, 0, 0, 1]  # Pista: 0=nada, 1=juguete
-        n_celdas = len(pista)          # Número de celdas de la pista
 
         mejor_tiempo = math.inf        # Mejor tiempo encontrado en la repetición
         idx_ganador = -1               # Índice del bebé ganador
