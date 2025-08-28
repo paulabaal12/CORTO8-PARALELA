@@ -11,6 +11,10 @@ class Bebe:
     td: float
 
 def simular_tiempo_bebe(bebe: Bebe, pista: List[int]) -> float:
+    """
+    Calcula el tiempo total que tarda un bebé en recorrer la pista.
+    Esta función es utilizada tanto en secuencial como en la paralela.
+    """
     if bebe.velocidad <= 0.0:
         return math.inf
     t = 0.0
@@ -21,11 +25,19 @@ def simular_tiempo_bebe(bebe: Bebe, pista: List[int]) -> float:
     return t
 
 def simular_bebe_individual(args: Tuple[Bebe, List[int]]) -> Tuple[str, float]:
+    """
+    Función para calcular el tiempo de un bebé (usada en paralelismo con hilos).
+    """
     bebe, pista = args
     tiempo = simular_tiempo_bebe(bebe, pista)
     return bebe.nombre, tiempo
 
 def simulacion_secuencial(REPETICIONES, bebes, pista):
+    """
+    Ejecuta la simulación de la carrera de bebés de forma secuencial.
+    Cada repetición se ejecuta una tras otra, usando un solo hilo.
+    Retorna los tiempos de cada repetición, el tiempo total y los resultados de la primera y última repetición.
+    """
     tiempos = []
     primer_resultado = None
     ultimo_resultado = None
@@ -52,6 +64,11 @@ def simulacion_secuencial(REPETICIONES, bebes, pista):
     return tiempos, tiempo_total, primer_resultado, ultimo_resultado
 
 def simulacion_paralela(REPETICIONES, bebes, pista, num_threads=4):
+    """
+    Ejecuta la simulación de la carrera de bebés usando paralelismo con hilos (multithreading).
+    Cada repetición ejecuta el cálculo de los bebés en paralelo usando ThreadPoolExecutor.
+    Retorna los tiempos de cada repetición, el tiempo total y los resultados de la primera y última repetición.
+    """
     tiempos = []
     primer_resultado = None
     ultimo_resultado = None
